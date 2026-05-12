@@ -20,11 +20,11 @@ Plot **two polygons** in the same radar:
 
 Both polygons share the same axes, the same orientation, and the same SVG. A legend below the chart labels them.
 
-The mentor polygon uses *share* (fraction of respondents who rated themselves 4), not absolute count, because the chart needs to make sense for teams of any size — three mentors out of three respondents should fill the axis; three out of fifty should not.
+The mentor polygon uses _share_ (fraction of respondents who rated themselves 4), not absolute count, because the chart needs to make sense for teams of any size — three mentors out of three respondents should fill the axis; three out of fifty should not.
 
 ## Consequences
 
-- **Pros.** The two failure modes — thin team and shallow team — produce visually distinct shapes. A skill with high average but zero mentor share is *competent but un-mentorable* (look outward for hiring); a skill with average 2 but one mentor is *growable* (look inward for development).
+- **Pros.** The two failure modes — thin team and shallow team — produce visually distinct shapes. A skill with high average but zero mentor share is _competent but un-mentorable_ (look outward for hiring); a skill with average 2 but one mentor is _growable_ (look inward for development).
 - **Pros.** Both polygons come from the same `ratings` map; no extra protocol surface.
 - **Cons.** Two overlays in the same chart is more visual load than one. We accept this — the mentor signal is too important to relegate to a secondary screen.
 - **Cons.** "Mentor share" is sensitive to small teams. A team of 3 where 1 rates a skill as 4 produces a mentor share of 33% on that axis, which looks dramatic. The HUD shows respondent count to contextualize.
