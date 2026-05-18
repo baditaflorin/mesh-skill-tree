@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { SkillTree } from "./features/skill/SkillTree";
 import { SettingsDrawer } from "./features/settings/SettingsDrawer";
 import { appConfig } from "./shared/config";
+import { InviteShareButton } from "@baditaflorin/mesh-common";
 
 const STORAGE = {
   room: `${appConfig.storagePrefix}:room`,
@@ -33,6 +34,7 @@ export function App() {
     <div className="app-root">
       <SkillTree roomId={roomId} peerId={peerId} />
 
+      <InviteShareButton appName={appConfig.appName} roomId={roomId} />
       <button
         type="button"
         className="settings-fab"
