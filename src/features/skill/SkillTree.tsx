@@ -65,7 +65,33 @@ export function SkillTree({ roomId, peerId }: Props) {
       }
     });
 
-    const refreshSkills = () => setSkills(ySkills.toArray());
+    // Two peers can both seed DEFAULT_SKILLS before the docs sync (each sees an
+    // empty array on init), merging to a duplicated list. Collapse duplicates
+    // convergently: every peer runs the same deterministic pass against the
+    // same replicated array, so they all settle on the same unique, ordered
+    // list. Idempotent — once deduped, no further deletes fire.
+    const dedupeSkills = () => {
+      const arr = ySkills.toArray();
+      const seen = new Set<string>();
+      const dupIdx: number[] = [];
+      arr.forEach((s, i) => {
+        if (seen.has(s)) dupIdx.push(i);
+        else seen.add(s);
+      });
+      if (dupIdx.length === 0) return;
+      doc.transact(() => {
+        // Delete from the back so earlier indices stay valid.
+        for (let i = dupIdx.length - 1; i >= 0; i--) {
+          ySkills.delete(dupIdx[i]!, 1);
+        }
+      });
+    };
+    dedupeSkills();
+
+    const refreshSkills = () => {
+      dedupeSkills();
+      setSkills(ySkills.toArray());
+    };
     const refreshRatings = () => {
       const next = new Map<string, Ratings>();
       yRatings.forEach((v, k) => next.set(k, v));

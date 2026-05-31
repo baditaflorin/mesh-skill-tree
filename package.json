@@ -1,6 +1,6 @@
 {
   "name": "mesh-skill-tree",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Peer-to-peer mesh: anonymous team skill radar. Self-rate 8-12 skills 1-4; team gets aggregate radar chart with no individual data.",
   "type": "module",
   "private": false,
@@ -37,6 +37,7 @@
     "@baditaflorin/mesh-common": "file:../mesh-common"
   },
   "devDependencies": {
+    "@types/node": "^22.10.0",
     "@types/react": "^19.2.6",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
