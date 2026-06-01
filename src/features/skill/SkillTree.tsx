@@ -221,7 +221,9 @@ export function SkillTree({ roomId, peerId }: Props) {
   return (
     <div className="skill-stage">
       <div className="skill-hud">
-        <span>{peers} phones</span>
+        <span>
+          {peers} {peers === 1 ? "person" : "people"} here
+        </span>
         <span>·</span>
         <span>{allRatings.size} responses</span>
         <span>·</span>
